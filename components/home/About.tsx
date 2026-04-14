@@ -2,7 +2,7 @@ import { RevealWrapper } from '@/components/ui/RevealWrapper'
 
 export function About() {
   return (
-    <section id="about" className="bg-white px-6 md:px-12 py-[70px] md:py-[120px]">
+    <section id="about" className="bg-white px-6 md:px-12 py-[70px] md:py-[120px] overflow-hidden">
       <div className="font-mono text-[10px] md:text-[11px] tracking-[0.2em] uppercase text-ag-gray-500 mb-10 md:mb-16 flex items-center gap-3 before:content-[''] before:inline-block before:w-[24px] before:h-[1px] before:bg-ag-gray-300">
         Sobre a agência
       </div>

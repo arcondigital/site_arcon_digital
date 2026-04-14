@@ -2,7 +2,7 @@ import { RevealWrapper } from '@/components/ui/RevealWrapper'
 
 export function Services() {
   return (
-    <section id="services" className="bg-ag-gray-900 px-6 md:px-12 py-[70px] md:py-[120px]">
+    <section id="services" className="bg-ag-gray-900 px-6 md:px-12 py-[70px] md:py-[120px] overflow-hidden">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-14 md:mb-20 gap-10">
         <RevealWrapper>
           <div className="font-mono text-[10px] md:text-[11px] tracking-[0.2em] uppercase text-ag-gray-500 mb-8 md:mb-16 flex items-center gap-3 before:content-[''] before:inline-block before:w-[24px] before:h-[1px] before:bg-ag-gray-700">

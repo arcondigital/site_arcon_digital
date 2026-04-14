@@ -40,6 +40,17 @@ export function Navbar() {
     return () => observer.disconnect()
   }, [isHome])
 
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isMenuOpen])
+
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
   const closeMenu = () => setIsMenuOpen(false)
 
@@ -93,7 +104,9 @@ export function Navbar() {
           <button 
             onClick={toggleMenu}
             className="flex md:hidden flex-col justify-center items-end gap-2 w-10 h-10 cursor-pointer outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white/50 p-1" 
-            aria-label="Menu"
+            aria-label={isMenuOpen ? 'Fechar menu' : 'Abrir menu'}
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu"
           >
             <span className={`block w-8 h-[2px] bg-white transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-[10px]' : ''}`}></span>
             <span className={`block w-8 h-[2px] bg-white transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`}></span>
@@ -103,7 +116,13 @@ export function Navbar() {
       </nav>
 
       {/* Mobile Menu Drawer */}
-      <div className={`fixed inset-0 z-[55] md:hidden transition-all duration-500 ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+      <div 
+        id="mobile-menu"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Navegação móvel"
+        className={`fixed inset-0 z-[55] md:hidden transition-all duration-500 ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+      >
         <div className="absolute inset-0 bg-[#050505]/95 backdrop-blur-xl" onClick={closeMenu}></div>
         <div className={`absolute right-0 top-0 h-full w-[85%] max-w-[400px] bg-[#0A0A0A] border-l border-white/5 p-12 flex flex-col pt-32 transition-transform duration-500 ease-ag-flip ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
           <ul className="flex flex-col gap-8 list-none text-left">
