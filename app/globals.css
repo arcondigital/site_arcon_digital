@@ -33,6 +33,7 @@
   html {
     scroll-behavior: smooth;
     overflow-x: hidden;
+    max-width: 100vw;
   }
   
   body {
@@ -43,6 +44,7 @@
     overflow-x: hidden;
     position: relative;
     width: 100%;
+    max-width: 100vw;
   }
   
   @media (pointer: fine) {

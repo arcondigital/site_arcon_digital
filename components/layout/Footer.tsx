@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 export function Footer() {
   return (
-    <footer className="bg-ag-gray-900 border-t border-white/5 px-6 md:px-12 pt-16 pb-10">
+    <footer className="bg-ag-gray-900 border-t border-white/5 px-6 md:px-12 pt-16 pb-10 overflow-hidden">
       <div className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr_1fr_1fr] gap-10 md:gap-16 mb-16">
         <div>
           <Link href="/" className="flex items-center cursor-pointer hover:opacity-80 transition-opacity mb-4 outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white/50 rounded-sm">

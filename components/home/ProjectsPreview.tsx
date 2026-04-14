@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export function ProjectsPreview() {
   return (
-    <section id="projects" className="bg-white px-6 md:px-12 py-[80px] md:py-[120px]">
+    <section id="projects" className="bg-white px-6 md:px-12 py-[80px] md:py-[120px] overflow-hidden">
       <RevealWrapper className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
         <h2 className="font-display font-black text-[clamp(36px,4vw,60px)] text-ag-black max-w-[14ch] leading-[1]">
           Nossos<br/>projetos.
