@@ -50,7 +50,9 @@ export default function RootLayout({
       <body className="font-sans" suppressHydrationWarning>
         <CustomCursor />
         <Navbar />
-        {children}
+        <main style={{ overflowX: 'clip', position: 'relative' }}>
+          {children}
+        </main>
         <Footer />
       </body>
     </html>
