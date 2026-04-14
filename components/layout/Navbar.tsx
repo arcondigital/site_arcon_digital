@@ -55,9 +55,9 @@ export function Navbar() {
             src="/Logo_arcon_site.svg"
             alt="Arcon Digital"
             width={160}
-            height={40}
+            height={32}
             priority
-            className="h-9 md:h-10 w-auto"
+            className="h-8 w-auto"
           />
         </Link>
         
