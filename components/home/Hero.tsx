@@ -27,16 +27,6 @@ export function Hero() {
       {/* Darkening overlay so white text remains readable over the grey effect */}
       <div className="absolute inset-0 bg-[#050505]/70 z-[1] pointer-events-none" />
 
-      {/* Subtle grid texture — preserves Arcon's tech aesthetic */}
-      <div
-        className="absolute inset-0 pointer-events-none z-[2]"
-        style={{
-          backgroundImage:
-            'linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)',
-          backgroundSize: '100px 100px',
-        }}
-      />
-
       {/* Hero content — above all background layers */}
       <div className="relative z-[10] w-full max-w-5xl text-center flex flex-col items-center px-6 md:px-12">
         <RevealWrapper delay={100}>
