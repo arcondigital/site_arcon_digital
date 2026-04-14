@@ -1,23 +1,28 @@
 import { RevealWrapper } from '@/components/ui/RevealWrapper'
 import Link from 'next/link'
+import { EtherealShadow } from '@/components/ui/etheral-shadow'
 
 export function Hero() {
   return (
     <section id="hero" className="min-h-screen bg-[#050505] flex items-center justify-center px-6 md:px-12 relative overflow-hidden">
-      {/* Deep Background Depth */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,#151515_0%,#050505_100%)]"></div>
-      
-      {/* Subtle Fluid Abstract Shapes */}
-      <div className="absolute top-[10%] left-[-10%] w-[50%] h-[50%] bg-white/[0.02] rounded-full blur-[120px] animate-pulse"></div>
-      <div className="absolute bottom-[-10%] right-[-5%] w-[40%] h-[40%] bg-white/[0.01] rounded-full blur-[100px]"></div>
-      
-      {/* subtle grid overlay */}
-      <div className="absolute inset-0 pointer-events-none opacity-20" style={{
-        backgroundImage: 'linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)',
+      {/* Ethereal Shadow — Animated Fluid Background */}
+      <EtherealShadow
+        color="rgba(40, 40, 40, 1)"
+        animation={{ scale: 60, speed: 30 }}
+        noise={{ opacity: 0.6, scale: 1.5 }}
+        sizing="fill"
+      />
+
+      {/* Subtle grid overlay — preserves the tech texture */}
+      <div className="absolute inset-0 pointer-events-none z-[1]" style={{
+        backgroundImage: 'linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)',
         backgroundSize: '100px 100px'
       }}></div>
+
+      {/* Darken vignette so text is always readable */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/60 via-transparent to-[#050505]/80 pointer-events-none z-[2]" />
       
-      <div className="relative z-10 w-full max-w-5xl text-center flex flex-col items-center">
+      <div className="relative z-[10] w-full max-w-5xl text-center flex flex-col items-center">
         <RevealWrapper delay={100}>
           <h1 className="font-display leading-[1.02] tracking-tighter text-white text-[clamp(42px,7vw,88px)] mb-8 max-w-4xl px-4 md:px-0">
             <span className="font-black">Estratégia e Design</span><br/>
