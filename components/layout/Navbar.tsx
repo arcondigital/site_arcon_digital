@@ -3,15 +3,20 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const pathname = usePathname()
+
+  const isHome = pathname === '/'
+  const showBackground = scrolled || !isHome
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 48)
+      setScrolled(window.scrollY > 20)
     }
     
     window.addEventListener('scroll', handleScroll)
@@ -19,6 +24,8 @@ export function Navbar() {
   }, [])
 
   useEffect(() => {
+    if (!isHome) return
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -31,7 +38,7 @@ export function Navbar() {
     sections.forEach(s => observer.observe(s))
     
     return () => observer.disconnect()
-  }, [])
+  }, [isHome])
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
   const closeMenu = () => setIsMenuOpen(false)
@@ -39,8 +46,8 @@ export function Navbar() {
   return (
     <>
       <nav className={`fixed top-0 w-full z-50 h-[88px] px-6 md:px-12 flex items-center justify-between transition-all duration-300 ${
-        scrolled 
-          ? 'bg-ag-black/60 backdrop-blur-lg border-b border-white/10 shadow-lg' 
+        showBackground 
+          ? 'bg-black/90 backdrop-blur-md border-b border-white/5 shadow-xl' 
           : 'bg-transparent border-b border-transparent'
       }`}>
         <Link href="/" onClick={closeMenu} className="flex items-center cursor-pointer outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white/50 rounded-sm opacity-100 hover:opacity-80 transition-opacity z-[60]">
