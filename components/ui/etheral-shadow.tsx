@@ -4,7 +4,14 @@ import React, { useRef, useId, useEffect, CSSProperties } from 'react';
 import { animate, useMotionValue, AnimationPlaybackControls } from 'framer-motion';
 
 // Type definitions
+interface ResponsiveImage {
+  src: string;
+  alt?: string;
+  srcSet?: string;
+}
+
 interface AnimationConfig {
+  preview?: boolean;
   scale: number;
   speed: number;
 }
@@ -14,7 +21,10 @@ interface NoiseConfig {
   scale: number;
 }
 
-interface EtherealShadowProps {
+interface ShadowOverlayProps {
+  type?: 'preset' | 'custom';
+  presetIndex?: number;
+  customImage?: ResponsiveImage;
   sizing?: 'fill' | 'stretch';
   color?: string;
   animation?: AnimationConfig;
@@ -40,22 +50,18 @@ function mapRange(
 const useInstanceId = (): string => {
   const id = useId();
   const cleanId = id.replace(/:/g, '');
-  return `shadowoverlay-${cleanId}`;
+  const instanceId = `shadowoverlay-${cleanId}`;
+  return instanceId;
 };
 
-/**
- * EtherealShadow — Animated fluid background using SVG turbulence filters.
- * Pure background component — no inner content, intended to be used as
- * an absolute-positioned layer inside a section.
- */
-export function EtherealShadow({
+export function Component({
   sizing = 'fill',
   color = 'rgba(128, 128, 128, 1)',
   animation,
   noise,
   style,
   className,
-}: EtherealShadowProps) {
+}: ShadowOverlayProps) {
   const id = useInstanceId();
   const animationEnabled = animation && animation.scale > 0;
   const feColorMatrixRef = useRef<SVGFEColorMatrixElement>(null);
@@ -98,8 +104,7 @@ export function EtherealShadow({
       className={className}
       style={{
         overflow: 'hidden',
-        position: 'absolute',
-        inset: 0,
+        position: 'relative',
         width: '100%',
         height: '100%',
         ...style,
@@ -113,7 +118,7 @@ export function EtherealShadow({
         }}
       >
         {animationEnabled && (
-          <svg style={{ position: 'absolute', width: 0, height: 0 }}>
+          <svg style={{ position: 'absolute' }}>
             <defs>
               <filter id={id}>
                 <feTurbulence
@@ -164,7 +169,6 @@ export function EtherealShadow({
         />
       </div>
 
-      {/* Noise texture overlay */}
       {noise && noise.opacity > 0 && (
         <div
           style={{
