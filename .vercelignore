@@ -1,0 +1,7 @@
+# Vercel Ignore
+.next/
+node_modules/
+.agent/
+.git/
+.env*
+*.local
